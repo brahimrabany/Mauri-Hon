@@ -1,0 +1,58 @@
+	   {%  extends 'main2.html' %}
+{% load static %}
+{% block content %}
+
+    	<script src="https://kit.fontawesome.com/30c18f1050.js" crossorigin="anonymous"></script>
+
+<link href="{% static  '/js2/jquery.dataTables.min.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet"  href="{% static '/js2/swiper-bundle.min.css'  %}">
+	<link   rel="stylesheet"   href="{% static '/js2/style3.css'  %}">
+
+	<link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+
+	<script src="{% static '/js2/global.min.js' %}"></script>
+    <script src="{% static '/js2/swiper-bundle.min.js'  %}"></script>
+    <script src="{% static '/js2/script3.js'  %}"></script>
+
+<script src="{% static 'js2/dlabnav-init.js'  %}"></script>
+ <script src="{% static 'js2/dlab.js'  %}"></script>
+<script src="{% static '/js2/global.min.js'  %}"></script>
+<script src="{% static 'js2/custom.min.js'  %}"></script>
+
+
+	<script src="https://kit.fontawesome.com/30c18f1050.js" crossorigin="anonymous"></script>
+
+    <div class="content-body">
+            <div class="container-fluid">
+
+<div class="row">
+<div class="col-xl-12">
+								<div class="card">
+									<div class="card-body">
+										<div class="profile-news">
+											<h5 class="text-primary d-inline">Notifications</h5>
+											{% for x in list2 %}
+											<div class="media pt-3 pb-3">
+												<img src="images/profile/5.jpg" alt="image" class="me-3 rounded" width="75">
+												<div class="media-body">
+													<h5 class="m-b-5"><a   class="text-black">{{x.sujet}}</a></h5>
+													<p class="mb-0">{{x.timestamp}}</p>
+												</div>
+												   <a type="button" href="{% url 'accepter' x.id x.sender_id %}" style="border-radius:4px;padding-top:2px;padding-bottom:2px;font-size:11px;color:white;background-color:green;width:70px;margin-right:-11px"href="">  &nbsp Accepter &nbsp</a>
+												   <a type="button" href="{% url 'reffuser' x.id %}" style="border-radius:4px;padding-top:2px;padding-bottom:2px;font-size:11px;color:white;background-color:green;width:70px;margin-right:-11px"href="">  &nbsp Reffuser &nbsp</a>
+
+
+											</div>
+
+											{% endfor %}
+
+										</div>
+									</div>
+								</div>
+							</div>
+     </div>
+			</div>
+	</div>
+
+{% endblock  %}

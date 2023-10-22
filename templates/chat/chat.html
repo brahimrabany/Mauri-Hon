@@ -1,0 +1,150 @@
+{%  extends 'chat/index.html' %}
+{% block content %}
+{% load static %}
+
+   <div class="dlabnav" style="padding-top:0px;margin-top:-9.5px">
+            <div class="dlabnav-scroll">
+				 <img  style="margin-left:60px;margin-bottom:20px;" width="80px" height="80px" src="/static/media/images/3910365359.jpg" class="rounded-circle user_img" alt="">
+				<p  style="margin-left:60px;">User Partenaire</p><br>
+				<ul class="metismenu" id="menu">
+                    <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+							<i class="fas fa-home"></i>
+							<span class="nav-text">Home</span>
+						</a>
+
+
+                    </li>
+
+                    <li><a class="has-arrow " href="{% url 'pr' %}" aria-expanded="false">
+						<i class="fas fa-info-circle"></i>
+							<span class="nav-text"   >Gestion de produits</span>
+						</a>
+
+                    </li>
+                    <li><a class="has-arrow " href="{% url 'b' %}" aria-expanded="false">
+							<i class="fas fa-chart-line"></i>
+							<span class="nav-text">Gestion d' entrepot</span>
+						</a>
+
+                    </li>
+
+
+                    <li><a href="{% url 'cat' %}" class="" aria-expanded="false">
+							<i class="fas fa-user-check"></i>
+							<span class="nav-text">Gestion de domaines</span>
+						</a>
+					</li>
+
+
+
+                </ul>
+
+			</div>
+        </div>
+
+     <div class="nav-header" style="padding-top:0px;margin-top:0px;margin-right:9px;background-color:white;color:black;height:65px">
+            <a  style="padding-top:21px;margin-top:0px;"class="brand-logo">
+				    <img  style="padding-top:0px;margin-left:0px;margin-bottom:30px;" width="40px" height="40px" src="/static/media/images/3910365359.jpg" class="rounded-circle user_img" alt="">
+
+
+				<div style="color:black;margin-bottom:40px;" class="brand-title">
+					<b style="color:black;margin-bottom:5px;">Mauri-Hon.</b>
+
+				</div>
+            </a>
+		   <div class="nav-control">
+                <div class="hamburger">
+                    <span class="line"></span><span class="line"></span><span class="line"></span>
+                </div>
+            </div>
+
+        </div>
+
+</div>
+ <div class="content-body">
+            <div class="container-fluid">
+
+    <div class="section" style="height: 80vh">
+    <div class="row">
+           <div class="col s3">
+        <div class="card">
+            <div class="collection">
+              {% for user in users %}
+               {% if  user.client  %}
+                <a href="{% url 'chat' request.user.id user.id %}"   class="collection-item row">
+<div class="chat-bx d-flex border-bottom">
+												<div class="chat-img">
+													<img src="/static/media/images/3910365359.jpg" alt="">
+												</div>
+												<div class="w-100">
+													<div class="d-flex mb-1 align-items-center">
+														<span class="fs-16 text-black">{{ user.username }}</span>
+														<span class="fs-12 ms-auto">2m ago</span>&nbsp &nbsp &nbsp&nbsp
+													</div>
+													<div>
+														<p class="mb-0">{{dr_ms}}</p>
+
+													</div>
+												</div>
+
+													</div>
+
+                </a>
+
+                {% endif %}
+                {% endfor %}
+
+													</div>
+												</div>
+
+													</div>
+
+        <div class="col s9">
+            <div class="card">
+            <div id="board" class="section grey lighten-3" style="height: 68vh; padding: 5px; overflow-y: scroll">
+                {% block messages %}
+
+                {% endblock %}
+
+            <form id="chat-box" class="form-group {% block hide %}hide{% endblock %}" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col s11">
+                        <div class="input-field">
+                            <input id="id_message" name="message" class="form-control" type="text" placeholder="Type your message..">
+                        </div>
+                    </div>
+                    <div class="col s1" style="line-height: 80px">
+                        <button   class="btn btn-primary rounded text-white"><i class="far fa-paper-plane me-2">send</i></button>
+                    </div>
+                </div>
+            </form>
+                 </div>
+            </div>
+        </div>
+    </div>
+    </div>
+                 </div>
+    </div>
+    {% load static %}
+
+<script src="../static/js2/global.min.js"></script>
+    <script src="{% static 'js2/chat.js' %}"></script>
+    <script>
+        // For receiving
+        sender_id = "{{ receiver.id }}";
+        receiver_id = "{{ request.user.id }}";
+
+        //For sending
+        $(function () {
+            scrolltoend();
+            $('#chat-box').on('submit', function (event) {
+                event.preventDefault();
+                var message = $('#id_message');
+                send('{{ request.user.username }}', '{{ receiver.username }}', message.val());
+                message.val('');
+            })
+        })
+    </script>
+
+{% endblock %}

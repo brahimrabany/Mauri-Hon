@@ -1,0 +1,32 @@
+{% extends 'main2.html' %}
+{% load static   %}
+
+{% block content %}
+
+    <div class="content-body">
+            <div class="container-fluid">
+				<div class="row page-titles">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active"><a href="javascript:void(0)">Layout</a></li>
+						<li class="breadcrumb-item"><a href="javascript:void(0)">Blank</a></li>
+					</ol>
+                </div>
+
+<div class="row">
+	<div class="col-md-6">
+		<div class="card card-body">
+
+			<p>Are you sure you want to delete "{{cat}}"?</p>
+
+			<form action="{% url 'deletecat' cat.id  %}" method="POST">
+
+				{% csrf_token %}
+				<a class="btn btn-warning" href="{% url 'cat' %}">Cancel</a>
+
+				<input class="btn btn-danger" type="submit" name="Confirm">
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

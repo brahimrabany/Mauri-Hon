@@ -1,0 +1,74 @@
+{%  extends 'main2.html' %}
+{% load static %}
+{% block content %}
+<link href="{% static  '/js2/jquery.dataTables.min.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet"  href="{% static '/js2/swiper-bundle.min.css'  %}">
+	<link   rel="stylesheet"   href="{% static '/js2/style3.css'  %}">
+
+	<link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+    <link href="{% static '/css/style.css' %}" rel="stylesheet">
+	<script src="{% static '/js2/global.min.js' %}"></script>
+
+ <script src="{% static '/js2/swiper-bundle.min.js'  %}"></script>
+    <script src="{% static '/js2/script3.js'  %}"></script>
+
+<script src="{% static 'js2/dlabnav-init.js'  %}"></script>
+ <script src="{% static 'js2/dlab.js'  %}"></script>
+<script src="{% static 'js2/global.min.js'  %}"></script>
+<script src="{% static 'js2/custom.min.js'  %}"></script>
+
+
+	<script src="https://kit.fontawesome.com/30c18f1050.js" crossorigin="anonymous"></script>
+      <div class="content-body" style="background-color:white">
+            <div class="container-fluid">
+ <div class="w-50 m-auto p-4 bg-light">
+	{% for e in e %}
+	<table class="table table-bordered">
+		 <tr>
+			 <th>Entrepot</th>
+			 <td>{{entre.nom}}</td>
+		 </tr>
+		 <tr>
+			 <th>Telephone :</th>
+			 <td>{{entre.telephone}}</td>
+		 </tr>
+		 <tr>
+			 <th>Address :</th>
+			 <td>{{entre.Address}}</td>
+		 </tr>
+		 <tr>
+			 <th>Localisation :</th>
+			 <td>{{entre.localisation}}</td>
+		 </tr>
+	</table>
+
+{% endfor %}
+
+</div>
+
+ <br>
+				<b style="font-size:20px">Liste de Produits</b><br><br><br>
+{% for p in produit %}
+				<div style="border-radius:5px;width:152px;height:235;border:2px solid green">
+<img  style="margin-bottom:5px" width="148px" height="100px" src="/static/images/3.png"   alt="">
+					<div>
+						<center> <b> {{p.nom}}</b><br><br></center>
+					<ul style="font-size:9px;padding-left:15px">
+
+							<li>Date Production : <b>21/21/2022</b></li>
+					    	<li> Date expiration:  <b>21/21/2022 </b></li>
+					    	<li> Quantite: <b>120</b> </li>
+					</ul><br>
+						<div style="margin-left:11px;border-radius:7px">
+                                <a type="button" style="border-radius:4px;padding-top:2px;padding-bottom:2px;font-size:11px;color:white;background-color:green;width:70px;margin-right:-11px"href="">  &nbsp Modifier &nbsp</a>
+                            <a type="button" style="border-radius:0px 4px 4px 0px ;padding-top:2px;padding-bottom:2px;padding-left:-4px;font-size:11px;margin-left:-4px;color:white;background-color:red;width:70px"  href="">  &nbsp Supprimer</a>
+                                </div>
+					</div>
+				</div>
+
+{% endfor %}
+            </div>
+        </div>
+
+{% endblock %}
